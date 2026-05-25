@@ -1,0 +1,568 @@
+/* ==========================================================================
+   PORTFÓLIO E LANDING PAGE PREMIUM - EMANUEL
+   Tema: Futurista / Clean / Dark Mode / Verde Neon
+   Organização: Desenvolvedor Front-End Sênior
+   ========================================================================== */
+
+/* --- VARIÁVEIS DO SISTEMA DE DESIGN --- */
+:root {
+    /* Cores */
+    --cor-verde: #34F802;
+    --cor-verde-glow: rgba(52, 248, 2, 0.4);
+    --cor-preto: #0A0A0A;
+    --cor-preto-rgb: 10, 10, 10;
+    --cor-card-bg: rgba(20, 20, 20, 0.6);
+    --cor-branco: #FFFFFF;
+    --cor-cinza-claro: #E0E0E0; /* Excelente contraste em fundo escuro (WCAG AA) */
+    --cor-cinza-medio: #A0A0A0;
+    --cor-cinza-escuro: #161616;
+    
+    /* Transições e Animações */
+    --transicao: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1);
+    --transicao-lenta: all 0.6s cubic-bezier(0.25, 0.8, 0.25, 1);
+}
+
+/* --- RESET & CONFIGURAÇÕES GERAIS --- */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: "Poppins", sans-serif;
+}
+
+html {
+    scroll-behavior: smooth;
+    font-size: 16px; /* Base para rem */
+}
+
+body {
+    min-height: 100vh;
+    /* Gradiente linear direcional: escuro na esquerda (para ler o texto) e translúcido na direita (para revelar o personagem) */
+    background-image: linear-gradient(to right, rgba(10, 10, 10, 0.96) 20%, rgba(10, 10, 10, 0.7) 55%, rgba(10, 10, 10, 0.15) 100%), url("../imagens-projetos-designer/bg-arte.jpg");
+    background-size: cover;
+    background-position: center center;
+    background-repeat: no-repeat;
+    background-attachment: fixed;
+    background-color: var(--cor-preto);
+    color: var(--cor-branco);
+    overflow-x: hidden;
+    line-height: 1.6;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+}
+
+/* --- BARRA DE PROGRESSO DO SCROLL (HIGH PERFORMANCE) --- */
+#scroll-progress {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 0%;
+    height: 4px;
+    background: linear-gradient(to right, var(--cor-verde), #a4ff82);
+    z-index: 1100;
+    transition: width 0.1s linear; /* Linear para acompanhar perfeitamente o scroll */
+    box-shadow: 0 0 12px var(--cor-verde-glow);
+    will-change: width;
+}
+
+/* --- HEADER / NAVEGAÇÃO --- */
+header {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    z-index: 1000;
+    padding: 30px 8%;
+    transition: var(--transicao);
+    background: transparent;
+}
+
+header.sticky {
+    padding: 15px 8%;
+    background: rgba(var(--cor-preto-rgb), 0.75);
+    backdrop-filter: blur(16px);
+    -webkit-backdrop-filter: blur(16px);
+    border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.4);
+}
+
+.home {
+    max-width: 1200px;
+    margin: 0 auto;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.menu-desktop ul {
+    display: flex;
+    gap: 40px;
+    list-style: none;
+}
+
+.menu-desktop a {
+    color: var(--cor-cinza-medio);
+    text-decoration: none;
+    font-size: 0.95rem;
+    font-weight: 500;
+    letter-spacing: 1.5px;
+    text-transform: uppercase;
+    position: relative;
+    padding: 6px 0;
+    transition: var(--transicao);
+}
+
+.menu-desktop a::after {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 0;
+    height: 2px;
+    background-color: var(--cor-verde);
+    transition: var(--transicao);
+}
+
+.menu-desktop a:hover {
+    color: var(--cor-branco);
+    text-shadow: 0 0 8px var(--cor-verde-glow);
+}
+
+.menu-desktop a:hover::after {
+    width: 100%;
+}
+
+/* --- CONTAINER E SEÇÕES --- */
+.container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 4%;
+    width: 100%;
+}
+
+.titulo-secao {
+    font-size: clamp(28px, 4vw, 42px);
+    font-weight: 800;
+    text-align: center;
+    margin-bottom: 12px;
+    letter-spacing: 1px;
+    text-transform: uppercase;
+}
+
+.subtitulo-secao {
+    color: var(--cor-cinza-medio);
+    text-align: center;
+    font-size: 1.05rem;
+    max-width: 600px;
+    margin: 0 auto 55px auto;
+}
+
+/* --- SEÇÃO SOBRE (HERO) --- */
+.sobre {
+    min-height: 100vh;
+    display: flex;
+    align-items: center;
+    padding: 140px 8% 100px 8%;
+    position: relative;
+}
+
+.sobre-conteudo {
+    max-width: 800px;
+}
+
+/* Efeito de brilho neon futurista sutil atrás do título */
+.sobre h1 {
+    font-size: clamp(36px, 7vw, 70px);
+    font-weight: 900;
+    line-height: 1.1;
+    color: var(--cor-branco);
+    margin-bottom: 15px;
+    letter-spacing: -1px;
+}
+
+.sobre .titulo-desc {
+    color: var(--cor-verde);
+    font-size: clamp(18px, 3.5vw, 30px);
+    font-weight: 700;
+    margin-bottom: 25px;
+    text-transform: uppercase;
+    letter-spacing: 3px;
+    display: inline-block;
+}
+
+.sobre p {
+    font-size: clamp(16px, 2.2vw, 21px);
+    color: var(--cor-cinza-claro);
+    line-height: 1.7;
+    margin-bottom: 40px;
+    max-width: 650px;
+}
+
+/* --- BOTÕES PREMIUM (COMPATÍVEIS COM ACESSIBILIDADE) --- */
+.btn-sobre {
+    display: inline-flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 15px;
+    font-weight: 700;
+    text-decoration: none;
+    text-transform: uppercase;
+    letter-spacing: 1.5px;
+    color: var(--cor-preto);
+    background-color: var(--cor-verde);
+    padding: 18px 45px;
+    border-radius: 50px;
+    box-shadow: 0 6px 20px rgba(52, 248, 2, 0.35);
+    transition: var(--transicao);
+    border: 2px solid transparent;
+    cursor: pointer;
+}
+
+.btn-sobre:hover, .btn-sobre:focus {
+    background-color: transparent;
+    color: var(--cor-verde);
+    border-color: var(--cor-verde);
+    transform: translateY(-5px);
+    box-shadow: 0 12px 30px rgba(52, 248, 2, 0.55);
+    outline: none;
+}
+
+/* --- INDICADOR DE SCROLL ANIMADO (FUTURISTA) --- */
+.scroll-indicator {
+    position: absolute;
+    bottom: 40px;
+    left: 50%;
+    transform: translateX(-50%);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 10px;
+    cursor: pointer;
+    color: var(--cor-cinza-medio);
+    font-size: 11px;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+    transition: var(--transicao);
+}
+
+.scroll-indicator:hover {
+    color: var(--cor-verde);
+}
+
+.scroll-mouse {
+    width: 28px;
+    height: 46px;
+    border: 2px solid var(--cor-cinza-medio);
+    border-radius: 15px;
+    position: relative;
+    transition: var(--transicao);
+}
+
+.scroll-indicator:hover .scroll-mouse {
+    border-color: var(--cor-verde);
+    box-shadow: 0 0 10px var(--cor-verde-glow);
+}
+
+.scroll-wheel {
+    width: 4px;
+    height: 8px;
+    background-color: var(--cor-verde);
+    border-radius: 2px;
+    position: absolute;
+    top: 8px;
+    left: 50%;
+    transform: translateX(-50%);
+    animation: scrollWheelAnimation 1.8s infinite ease-in-out;
+}
+
+@keyframes scrollWheelAnimation {
+    0% {
+        top: 8px;
+        opacity: 1;
+        height: 8px;
+    }
+    50% {
+        top: 24px;
+        opacity: 0;
+        height: 4px;
+    }
+    100% {
+        top: 8px;
+        opacity: 1;
+        height: 8px;
+    }
+}
+
+/* --- PERFORMANCE DE ANIMAÇÃO (WILL-CHANGE / ACELERAÇÃO GPU) --- */
+.reveal {
+    opacity: 0;
+    transform: translateY(35px);
+    will-change: transform, opacity;
+    backface-visibility: hidden;
+    transition: opacity 0.8s cubic-bezier(0.25, 0.8, 0.25, 1), transform 0.8s cubic-bezier(0.25, 0.8, 0.25, 1);
+}
+
+.reveal.active {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+/* --- SEÇÃO PROJETOS --- */
+.projetos {
+    padding: 120px 0;
+    background-color: rgba(10, 10, 10, 0.7);
+    border-top: 1px solid rgba(255, 255, 255, 0.02);
+}
+
+.grid-projetos {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+    gap: 35px;
+}
+
+.card-projeto {
+    background: var(--cor-card-bg);
+    border: 1px solid rgba(255, 255, 255, 0.04);
+    border-radius: 24px;
+    overflow: hidden;
+    backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(12px);
+    transition: var(--transicao-lenta);
+    display: flex;
+    flex-direction: column;
+}
+
+.card-projeto:hover, .card-projeto:focus-within {
+    transform: translateY(-12px);
+    border-color: rgba(52, 248, 2, 0.25);
+    box-shadow: 0 20px 40px rgba(0, 0, 0, 0.5), 0 0 20px rgba(52, 248, 2, 0.08);
+}
+
+.card-imagem {
+    height: 230px;
+    background-size: cover;
+    background-position: center;
+    transition: var(--transicao-lenta);
+}
+
+.bg-projeto-1 {
+    background-image: linear-gradient(rgba(0, 0, 0, 0.1), rgba(0, 0, 0, 0.65)), url("../imagens-projetos-designer/arte-background.jpg");
+}
+
+.bg-projeto-2 {
+    background-image: linear-gradient(rgba(0, 0, 0, 0.1), rgba(0, 0, 0, 0.65)), url("../imagens-projetos-designer/bg-arte.jpg");
+}
+
+.bg-projeto-3 {
+    background-image: linear-gradient(rgba(0, 0, 0, 0.3), rgba(0, 0, 0, 0.75)), url("../imagens-projetos-designer/arte-background.jpg");
+    background-position: top;
+}
+
+.card-projeto:hover .card-imagem {
+    transform: scale(1.06);
+}
+
+.card-conteudo {
+    padding: 30px;
+    display: flex;
+    flex-direction: column;
+    flex-grow: 1;
+}
+
+.tag-projeto {
+    font-size: 11px;
+    font-weight: 700;
+    color: var(--cor-verde);
+    text-transform: uppercase;
+    letter-spacing: 1.5px;
+    margin-bottom: 12px;
+    text-shadow: 0 0 5px var(--cor-verde-glow);
+}
+
+.card-conteudo h3 {
+    font-size: 1.35rem;
+    margin-bottom: 12px;
+    color: var(--cor-branco);
+    font-weight: 700;
+}
+
+.card-conteudo p {
+    font-size: 0.95rem;
+    color: var(--cor-cinza-claro);
+    line-height: 1.7;
+}
+
+/* --- SEÇÃO CONTATO --- */
+.contato {
+    padding: 120px 0;
+    text-align: center;
+    background-color: var(--cor-preto);
+    border-top: 1px solid rgba(255, 255, 255, 0.02);
+}
+
+.contato-info {
+    margin-top: 50px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 35px;
+}
+
+.email-link {
+    font-size: clamp(22px, 5vw, 36px);
+    color: var(--cor-branco);
+    text-decoration: none;
+    font-weight: 800;
+    position: relative;
+    padding-bottom: 6px;
+    transition: var(--transicao);
+    letter-spacing: -0.5px;
+}
+
+.email-link:hover, .email-link:focus {
+    color: var(--cor-verde);
+    text-shadow: 0 0 15px var(--cor-verde-glow);
+    outline: none;
+}
+
+.email-link::after {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 5%;
+    width: 90%;
+    height: 3px;
+    background-color: var(--cor-verde);
+    transform: scaleX(0);
+    transition: var(--transicao);
+}
+
+.email-link:hover::after, .email-link:focus::after {
+    transform: scaleX(1);
+}
+
+.redes-sociais {
+    display: flex;
+    gap: 25px;
+    margin-top: 15px;
+}
+
+.social-icon {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 64px;
+    height: 64px;
+    border-radius: 50%;
+    background-color: var(--cor-cinza-escuro);
+    border: 1px solid rgba(255, 255, 255, 0.04);
+    transition: var(--transicao);
+}
+
+.social-icon img {
+    width: 26px;
+    height: 26px;
+    transition: var(--transicao);
+    filter: brightness(0.85);
+}
+
+.social-icon:hover, .social-icon:focus {
+    background-color: var(--cor-verde);
+    border-color: var(--cor-verde);
+    transform: translateY(-6px);
+    box-shadow: 0 12px 25px rgba(52, 248, 2, 0.4);
+    outline: none;
+}
+
+.social-icon:hover img, .social-icon:focus img {
+    filter: brightness(0) contrast(1); /* Deixa o ícone preto/escuro para contraste no fundo verde */
+}
+
+/* --- FOOTER --- */
+footer {
+    padding: 50px 0;
+    background-color: #060606;
+    border-top: 1px solid rgba(255, 255, 255, 0.03);
+    text-align: center;
+}
+
+footer p {
+    font-size: 0.9rem;
+    color: var(--cor-cinza-medio);
+}
+
+.footer-credito {
+    font-size: 0.8rem;
+    margin-top: 10px;
+    opacity: 0.5;
+}
+
+/* --- REGRAS DE RESPONSIVIDADE (MEDIA QUERIES) --- */
+@media (max-width: 992px) {
+    header {
+        padding: 20px 6%;
+    }
+    header.sticky {
+        padding: 12px 6%;
+    }
+    .grid-projetos {
+        grid-template-columns: repeat(auto-fit, minmax(290px, 1fr));
+        gap: 25px;
+    }
+}
+
+@media (max-width: 768px) {
+    body {
+        /* Gradiente vertical no mobile para dar legibilidade perfeita ao texto centralizado */
+        background-image: linear-gradient(to bottom, rgba(10, 10, 10, 0.96) 0%, rgba(10, 10, 10, 0.75) 50%, rgba(10, 10, 10, 0.96) 100%), url("../imagens-projetos-designer/bg-arte.jpg");
+    }
+    .menu-desktop ul {
+        gap: 25px;
+    }
+    .menu-desktop a {
+        font-size: 0.85rem;
+        letter-spacing: 1px;
+    }
+    .sobre {
+        padding: 140px 6% 80px 6%;
+        text-align: center;
+        display: flex;
+        justify-content: center;
+    }
+    .sobre-conteudo {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+    }
+    .sobre p {
+        margin-left: auto;
+        margin-right: auto;
+    }
+    .scroll-indicator {
+        display: none; /* Oculta indicador de scroll em tablets e celulares */
+    }
+}
+
+@media (max-width: 480px) {
+    .home {
+        flex-direction: column;
+        gap: 15px;
+    }
+    .menu-desktop ul {
+        gap: 15px;
+    }
+    .menu-desktop a {
+        font-size: 0.8rem;
+    }
+    .sobre {
+        padding-top: 160px;
+    }
+    .btn-sobre {
+        width: 100%;
+        max-width: 280px;
+        padding: 16px 20px;
+    }
+    .card-imagem {
+        height: 190px;
+    }
+}
